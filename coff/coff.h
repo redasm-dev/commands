@@ -16,6 +16,12 @@
 #define COFF_SYMBOL_SIZE 18
 #define COFF_SYMBOL_SHORT_NAME_LEN 8
 
+#define COFF_N_BTSHFT 4
+#define COFF_N_TMASK 0x0030
+
+#define COFF_ISFCN(t)                                                          \
+    (((t) & COFF_N_TMASK) == (IMAGE_SYM_DTYPE_FUNCTION << COFF_N_BTSHFT))
+
 typedef struct CoffSymbol {
     union {
         char short_name[COFF_SYMBOL_SHORT_NAME_LEN];

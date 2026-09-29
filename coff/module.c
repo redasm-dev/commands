@@ -88,8 +88,7 @@ static RDCommandValue coff_execute(RDContext* ctx, const RDCommandValue* args) {
                              rd_slice_at(segments, sym.section_number - 1)) +
                          sym.value;
 
-        u8 derived_type = (sym.type >> 8) & 0xFF;
-        if(derived_type == IMAGE_SYM_DTYPE_FUNCTION) rd_set_function(ctx, addr);
+        if(COFF_ISFCN(sym.type)) rd_set_function(ctx, addr);
 
         rd_library_name(ctx, addr, name);
     }
